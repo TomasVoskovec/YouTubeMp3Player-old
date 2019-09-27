@@ -9,7 +9,7 @@ namespace app.Models
     {
         public static bool IsDev = true;
         public string AppName = "YouTube MP3 Player";
-        public string AppWebName = "YouTubeMp3Player";
+        public string AppWebName = "YouTubeMp3Playr";
 
         // Colors
         public static Color BackgroundColor = Color.White;
