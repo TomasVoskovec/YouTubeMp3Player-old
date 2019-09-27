@@ -1,0 +1,111 @@
+﻿using app.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace app.Views
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
+    {
+        public LoginPage()
+        {
+            InitializeComponent();
+            Init();
+        }
+
+        void Init()
+        {
+            App.StartCheckInternet(NoInternetLabel, this);
+
+            NoInternetLabel.TextColor = Color.White;
+            NoInternetLabel.BackgroundColor = Constants.ErrorColor;
+
+            EntryEmail.TextColor = Constants.MainTextColor;
+            EntryEmail.PlaceholderColor = Constants.PlaceHolderColor;
+            EntryEmail.Completed += (s, e) => EntryPassword.Focus();
+            EntryEmail.FontSize = Constants.TextM;
+
+            EntryPassword.TextColor = Constants.MainTextColor;
+            EntryPassword.PlaceholderColor = Constants.PlaceHolderColor;
+            EntryPassword.Completed += (s, e) => LoginButton_Clicked(s, e);
+            EntryPassword.FontSize = Constants.TextM;
+
+            ForgottenPassword.TextColor = Constants.OrangeTextColor;
+            ForgottenPassword.FontSize = Constants.TextS;
+
+            LoginButton.FontSize = Constants.TextM;
+            LoginButton.TextColor = Constants.ButtonTextColor;
+
+            RegisterLabel.FontSize = Constants.TextS;
+            RegisterLabel.TextColor = Constants.ButtonTextColor;
+
+            RegisterLink.TextColor = Constants.OrangeTextColor;
+
+            LoginButtonBackgroundColor.FillColor = Constants.ActiveOrangeColor;
+        }
+
+        async void loginAction()
+        {
+            User user = new User(EntryEmail.Text, EntryPassword.Text);
+            if (user.VertifyData())
+            {
+                Token result = await App.RestService.Login(user);
+                //Token result = new Token();
+
+                if (result.AccessToken != null)
+                {
+                    App.TokenDatabase.SaveToken(result);
+
+                    User serverUser = await App.RestService.ValidateToken(result);
+
+                    if (serverUser.Id != 0)
+                    {
+                        if (Device.RuntimePlatform == Device.Android)
+                        {
+                            Application.Current.MainPage = new NavigationPage(new MainPage());
+                        }
+                        if (Device.RuntimePlatform == Device.iOS)
+                        {
+                            await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Login", "Token validation error.", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Login", "Login failed, email or password are incorrect.", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Login", "Login failed, email or password are empty.", "OK");
+            }
+        }
+
+        void LoginButton_Clicked(object sender, EventArgs e)
+        {
+            loginAction();
+        }
+
+        void ForgottenPassword_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Password", "Haaahaaa", "OK");
+        }
+
+        void RegisterLink_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("Register", "Register page", "OK");
+        }
+
+
+    }
+}
