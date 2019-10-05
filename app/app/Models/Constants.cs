@@ -29,8 +29,8 @@ namespace app.Models
         public static string ServerUrl = "https://voskoto16.sps-prosek.cz";
 
         // Login
-        public static string LoginUrl = Constants.ServerUrl + "/YoutubeMp3Player/api/login.php";
-        public static string ValidateTokenUrl = Constants.ServerUrl + "/YoutubeMp3Player/api/validate_token.php";
+        public static string LoginUrl = Constants.ServerUrl + "/YouTubeMp3Player/api/login.php";
+        public static string ValidateTokenUrl = Constants.ServerUrl + "/YouTubeMp3Player/api/validate_token.php";
 
         // Messages
         public static string NoInternetText = "No internet connection, please reconnect your device.";

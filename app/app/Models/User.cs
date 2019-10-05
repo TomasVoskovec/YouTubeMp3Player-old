@@ -7,7 +7,7 @@ namespace app.Models
 {
     public class User
     {
-        [PrimaryKey]
+        [AutoIncrement][PrimaryKey]
         public int Id { get; set; }
         public string Username { get; set; }
         [Unique]
@@ -22,10 +22,10 @@ namespace app.Models
             this.Email = email;
         }
 
-        public User(string password, string email)
+        public User(string email, string password)
         {
-            this.Password = password;
             this.Email = email;
+            this.Password = password;
         }
 
         public bool VertifyData()

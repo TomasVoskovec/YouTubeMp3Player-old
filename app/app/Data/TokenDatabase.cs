@@ -29,7 +29,24 @@ namespace app.Data
                 }
                 else
                 {
-                    return database.Table<Token>().First();
+                    List<Token> tokens = database.Table<Token>().ToList();
+
+                    return tokens[tokens.Count - 1];
+                }
+            }
+        }
+
+        public List<Token> GetAllTokens()
+        {
+            lock (locker)
+            {
+                if (database.Table<Token>().Count() == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return database.Table<Token>().ToList();
                 }
             }
         }

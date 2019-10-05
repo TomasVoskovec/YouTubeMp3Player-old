@@ -48,11 +48,16 @@ namespace app.Views
             RegisterLink.TextColor = Constants.OrangeTextColor;
 
             LoginButtonBackgroundColor.FillColor = Constants.ActiveOrangeColor;
+
+            //Auto login
+            Token loadedToken = App.TokenDatabase.GetToken();
+            autoLogin(loadedToken);
         }
 
         async void loginAction()
         {
             User user = new User(EntryEmail.Text, EntryPassword.Text);
+
             if (user.VertifyData())
             {
                 Token result = await App.RestService.Login(user);
@@ -88,6 +93,28 @@ namespace app.Views
             else
             {
                 await DisplayAlert("Login", "Login failed, email or password are empty.", "OK");
+            }
+        }
+
+        async void autoLogin (Token token)
+        {
+            if (token.AccessToken != null)
+            {
+                User serverUser = await App.RestService.ValidateToken(token);
+
+                List<Token> loadedTokens = App.TokenDatabase.GetAllTokens();
+
+                if (serverUser.Id != 0)
+                {
+                    if (Device.RuntimePlatform == Device.Android)
+                    {
+                        Application.Current.MainPage = new NavigationPage(new MainPage());
+                    }
+                    if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+                    }
+                }
             }
         }
 
