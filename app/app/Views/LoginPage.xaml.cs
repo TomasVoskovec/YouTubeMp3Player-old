@@ -121,9 +121,15 @@ namespace app.Views
             {
                 if (token.AccessToken != null)
                 {
-                    User serverUser = await App.RestService.ValidateToken(token);
+                    User serverUser = null;
 
-                    List<Token> loadedTokens = App.TokenDatabase.GetAllTokens();
+                    try
+                    {
+                        serverUser = await App.RestService.ValidateToken(token);
+                    }
+                    catch (Exception e)
+                    {
+                    }
 
                     if (serverUser.Id != 0)
                     {

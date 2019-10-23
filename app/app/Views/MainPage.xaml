@@ -6,9 +6,4 @@
             xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
             mc:Ignorable="d"
             x:Class="app.Views.MainPage">
-    
-  <!--Pages can be added as references or inline-->
-  <ContentPage Title="Tab 1" />
-  <ContentPage Title="Tab 2" />
-  <ContentPage Title="Tab 3" />
 </xf:BottomBarPage>
