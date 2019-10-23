@@ -88,6 +88,11 @@ namespace app
             hasInternet = false;
             currentPage = page;
 
+            if (!CheckInternet())
+            {
+                label.IsVisible = true;
+            }
+
             if (timer == null)
             {
                 timer = new Timer((e) =>
@@ -103,7 +108,7 @@ namespace app
             networkConnection.CheckNetworkConnection();
             if (!networkConnection.IsConnected)
             {
-                Device.BeginInvokeOnMainThread(async () =>
+                Device.BeginInvokeOnMainThread(() =>
                 {
                     if (hasInternet)
                     {
@@ -111,7 +116,7 @@ namespace app
                         {
                             hasInternet = false;
                             labelScreen.IsVisible = true;
-                            await ShowDisplayAlert();
+                            noInternetShow = false;
                         }
                     }
                 });
@@ -127,7 +132,7 @@ namespace app
         }
 
         // Faster version (buttons usage etc.)
-        public static async Task<bool> CheckInternet()
+        public static bool CheckInternet()
         {
             var networkConnection = DependencyService.Get<INetworkConnection>();
             networkConnection.CheckNetworkConnection();
@@ -135,7 +140,7 @@ namespace app
             return networkConnection.IsConnected;
         }
 
-        public static async Task<bool> CheckIfInternetAlert()
+        public static bool CheckIfInternetAlert()
         {
             var networkConnection = DependencyService.Get<INetworkConnection>();
             networkConnection.CheckNetworkConnection();
@@ -144,17 +149,10 @@ namespace app
             {
                 if (!noInternetShow)
                 {
-                    await ShowDisplayAlert();
+                    noInternetShow = false;
                 }
             }
             return true;
-        }
-
-        static async Task ShowDisplayAlert()
-        {
-            noInternetShow = false;
-            //await currentPage.DisplayAlert("Internet", Constants.NoInternetText, "OK");
-            noInternetShow = false;
         }
     }
 }

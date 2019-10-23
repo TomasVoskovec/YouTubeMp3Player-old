@@ -6,26 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BottomBar.XamarinForms;
 
 namespace app.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : ContentPage
+    public partial class MainPage : BottomBarPage
     {
         public MainPage()
         {
             InitializeComponent();
-            Init();
-        }
-
-        void Init()
-        {
-            App.StartCheckInternet(NoInternetLabel, this);
-        }
-
-        async void LoginPage_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new LoginPage());
         }
     }
 }

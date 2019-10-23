@@ -60,14 +60,70 @@ namespace app.Views
 
             if (user.VertifyData())
             {
-                Token result = await App.RestService.Login(user);
-                //Token result = new Token();
+                bool isConnected = App.CheckInternet();
 
-                if (result.AccessToken != null)
+                if (isConnected)
                 {
-                    App.TokenDatabase.SaveToken(result);
+                    Token result = await App.RestService.Login(user);
+                    //Token result = new Token();
 
-                    User serverUser = await App.RestService.ValidateToken(result);
+                    if (result.AccessToken != null)
+                    {
+                        App.TokenDatabase.SaveToken(result);
+
+                        User serverUser = await App.RestService.ValidateToken(result);
+
+                        if (serverUser.Id != 0)
+                        {
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                Application.Current.MainPage = new NavigationPage(new MainPage())
+                                {
+                                    BarBackgroundColor = Color.White,
+                                    BarTextColor = Color.Black,
+                                };
+                            }
+                            if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await Navigation.PushModalAsync(new NavigationPage(new MainPage())
+                                {
+                                    BarBackgroundColor = Color.White,
+                                    BarTextColor = Color.Black,
+                                });
+                            }
+                        }
+                        else
+                        {
+                            await DisplayAlert("Login", "Token validation error.", "OK");
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert("Login", "Login failed, email or password are incorrect.", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Login", "Login failed, no internet connection.", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Login", "Login failed, email or password are empty.", "OK");
+            }
+        }
+
+        async void autoLogin (Token token)
+        {
+            bool isConnected = App.CheckInternet();
+
+            if (isConnected)
+            {
+                if (token.AccessToken != null)
+                {
+                    User serverUser = await App.RestService.ValidateToken(token);
+
+                    List<Token> loadedTokens = App.TokenDatabase.GetAllTokens();
 
                     if (serverUser.Id != 0)
                     {
@@ -79,40 +135,6 @@ namespace app.Views
                         {
                             await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
                         }
-                    }
-                    else
-                    {
-                        await DisplayAlert("Login", "Token validation error.", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Login", "Login failed, email or password are incorrect.", "OK");
-                }
-            }
-            else
-            {
-                await DisplayAlert("Login", "Login failed, email or password are empty.", "OK");
-            }
-        }
-
-        async void autoLogin (Token token)
-        {
-            if (token.AccessToken != null)
-            {
-                User serverUser = await App.RestService.ValidateToken(token);
-
-                List<Token> loadedTokens = App.TokenDatabase.GetAllTokens();
-
-                if (serverUser.Id != 0)
-                {
-                    if (Device.RuntimePlatform == Device.Android)
-                    {
-                        Application.Current.MainPage = new NavigationPage(new MainPage());
-                    }
-                    if (Device.RuntimePlatform == Device.iOS)
-                    {
-                        await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
                     }
                 }
             }
