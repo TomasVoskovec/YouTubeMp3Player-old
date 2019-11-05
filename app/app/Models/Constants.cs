@@ -19,6 +19,7 @@ namespace app.Models
         public static Color ButtonTextColor = Color.White;
         public static Color ActiveOrangeColor = Color.FromRgb(255, 117, 0);
         public static Color ErrorColor = Color.FromRgb(228, 108, 103);
+        public static Color PasiveColor = Color.FromRgb(204, 204, 204);
 
         // Font sizes
         public static double TextL = 20;

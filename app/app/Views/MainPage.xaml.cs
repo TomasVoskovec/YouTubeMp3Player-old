@@ -16,6 +16,13 @@ namespace app.Views
         public MainPage()
         {
             InitializeComponent();
+            init();
+        }
+
+        void init()
+        {
+            // Initialize pages
+            this.Children.Add(new MusicPlayer() { IconImageSource = "player_ico.png" });
         }
     }
 }

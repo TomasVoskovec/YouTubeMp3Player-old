@@ -1,4 +1,5 @@
-﻿using System;
+﻿using app.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace app.Views
         public MusicPlayer()
         {
             InitializeComponent();
+            init();
+        }
+
+        void init()
+        {
+            AudioSlider.MinimumTrackColor = Constants.ActiveOrangeColor;
+            AudioSlider.MaximumTrackColor = Constants.PasiveColor;
         }
     }
 }

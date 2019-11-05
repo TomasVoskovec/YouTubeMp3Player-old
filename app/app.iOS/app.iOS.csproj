@@ -142,4 +142,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\login_background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\track_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\play_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\prev_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\slider_thumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\player_ico.png" />
+  </ItemGroup>
 </Project>

@@ -21,6 +21,7 @@ namespace app.Models
             set { SetValue(BorderColorProperty, value); }
         }
 
+        [Obsolete]
         public static readonly BindableProperty BorderWidthProperty =
         BindableProperty.Create(
             nameof(BorderWidth),
@@ -29,12 +30,14 @@ namespace app.Models
             Device.OnPlatform<int>(1, 2, 2));
 
         // Gets or sets BorderWidth value
+        [Obsolete]
         public int BorderWidth
         {
             get { return (int)GetValue(BorderWidthProperty); }
             set { SetValue(BorderWidthProperty, value); }
         }
 
+        [Obsolete]
         public static readonly BindableProperty CornerRadiusProperty =
         BindableProperty.Create(
             nameof(CornerRadius),
@@ -43,6 +46,7 @@ namespace app.Models
             Device.OnPlatform<double>(6, 7, 7));
 
         // Gets or sets CornerRadius value
+        [Obsolete]
         public double CornerRadius
         {
             get { return (double)GetValue(CornerRadiusProperty); }

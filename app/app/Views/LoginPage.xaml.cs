@@ -13,12 +13,14 @@ namespace app.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        [Obsolete]
         public LoginPage()
         {
             InitializeComponent();
             Init();
         }
 
+        [Obsolete]
         void Init()
         {
             App.StartCheckInternet(NoInternetLabel, this);
@@ -54,6 +56,7 @@ namespace app.Views
             autoLogin(loadedToken);
         }
 
+        [Obsolete]
         async void loginAction()
         {
             User user = new User(EntryEmail.Text, EntryPassword.Text);
@@ -113,6 +116,7 @@ namespace app.Views
             }
         }
 
+        [Obsolete]
         async void autoLogin (Token token)
         {
             bool isConnected = App.CheckInternet();
@@ -127,7 +131,7 @@ namespace app.Views
                     {
                         serverUser = await App.RestService.ValidateToken(token);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                     }
 
@@ -146,6 +150,7 @@ namespace app.Views
             }
         }
 
+        [Obsolete]
         void LoginButton_Clicked(object sender, EventArgs e)
         {
             loginAction();

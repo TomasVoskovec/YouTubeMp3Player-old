@@ -6,10 +6,70 @@
              mc:Ignorable="d"
              x:Class="app.Views.MusicPlayer">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.Padding>
+                <OnIdiom x:TypeArguments="Thickness"
+                             Phone="15"
+                             Tablet="30"/>
+            </Grid.Padding>
+
+            <Label HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="Medium"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="3"
+                   Text="Music from playlist Playlist name"/>
+
+            <Image Grid.Row="1"
+                   Grid.RowSpan="5"
+                   Grid.ColumnSpan="3"
+                   Source="track_ico.png"/>
+
+            <Label HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="Medium"
+                   Grid.Row="6"
+                   Grid.ColumnSpan="3"
+                   Text="Generator - Lorem Ipsum"/>
+
+            <Label Grid.Row="7"
+                   Grid.ColumnSpan="3"
+                   BackgroundColor="Red">
+
+            </Label>
+
+            <Slider x:Name="AudioSlider"
+                    Grid.Row="8"
+                    Grid.ColumnSpan="3"
+                    ThumbImageSource="slider_thumb.png"/>
+
+            <Image Grid.Row="10"
+                   Source="prev_ico.png"/>
+            <Image Grid.Row="9"
+                   Grid.RowSpan="2"
+                   Grid.Column="1"
+                   Source="play_ico.png"/>
+            <Image Grid.Row="10"
+                   Grid.Column="2"
+                   Source="next_ico.png"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
