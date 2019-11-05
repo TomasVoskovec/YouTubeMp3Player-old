@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
              mc:Ignorable="d"
              x:Class="app.Views.MusicPlayer">
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="PlayerGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -30,7 +31,8 @@
                              Phone="15"
                              Tablet="30"/>
             </Grid.Padding>
-
+            
+            <!-- Playlist info -->
             <Label HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    FontSize="Medium"
@@ -38,11 +40,13 @@
                    Grid.ColumnSpan="3"
                    Text="Music from playlist Playlist name"/>
 
+            <!-- Track image -->
             <Image Grid.Row="1"
                    Grid.RowSpan="5"
                    Grid.ColumnSpan="3"
                    Source="track_ico.png"/>
 
+            <!-- Track info -->
             <Label HorizontalTextAlignment="Center"
                    VerticalTextAlignment="Center"
                    FontSize="Medium"
@@ -50,26 +54,70 @@
                    Grid.ColumnSpan="3"
                    Text="Generator - Lorem Ipsum"/>
 
-            <Label Grid.Row="7"
-                   Grid.ColumnSpan="3"
-                   BackgroundColor="Red">
+            <!-- Track action buttons -->
+            <controls:TintedImage x:Name="AddToPlaylistIco"
+                                  Grid.Row="7"
+                                  Grid.Column="0"
+                                  Margin="10"
+                                  Source="add_to_playlist_ico.png"/>
+            <Button x:Name="AddToPlaylist"
+                    Clicked="AddToPlaylist_Clicked"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"/>
 
-            </Label>
+            <controls:TintedImage x:Name="AddToFavouritesIco"
+                                  Grid.Row="7"
+                                  Grid.Column="1"
+                                  Margin="10"
+                                  Source="add_to_favourites_ico.png"/>
+            <Button x:Name="AddToFavourites"
+                    Clicked="AddToFavourites_Clicked"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"/>
 
+            <controls:TintedImage x:Name="RepeatIco"
+                                  Grid.Row="7"
+                                  Grid.Column="2"
+                                  Margin="10"
+                                  Source="repeat_ico.png"/>
+            <Button x:Name="Repeat"
+                    Clicked="Repeat_Clicked"
+                    Grid.Row="7"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"/>
+
+            <!-- Track slider -->
             <Slider x:Name="AudioSlider"
                     Grid.Row="8"
                     Grid.ColumnSpan="3"
                     ThumbImageSource="slider_thumb.png"/>
 
+            <!-- Player action buttons -->
+            <Button Grid.Row="10"
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"/>
             <Image Grid.Row="10"
+                   Grid.Column="0"
                    Source="prev_ico.png"/>
+
+            <Button Grid.Row="9"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    BackgroundColor="Transparent"/>
             <Image Grid.Row="9"
                    Grid.RowSpan="2"
                    Grid.Column="1"
                    Source="play_ico.png"/>
+
+            <Button Grid.Row="10"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"/>
             <Image Grid.Row="10"
                    Grid.Column="2"
                    Source="next_ico.png"/>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

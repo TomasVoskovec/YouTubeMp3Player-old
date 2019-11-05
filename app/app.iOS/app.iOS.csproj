@@ -160,4 +160,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\player_ico.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\repeat_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_to_favourites_ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add_to_playlist_ico.png" />
+  </ItemGroup>
 </Project>
