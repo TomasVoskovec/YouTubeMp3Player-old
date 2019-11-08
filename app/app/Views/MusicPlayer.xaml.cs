@@ -57,5 +57,20 @@ namespace app.Views
         {
             activateIcon(AddToPlaylistIco);
         }
+
+        private void NextButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PlayButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PreviousButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

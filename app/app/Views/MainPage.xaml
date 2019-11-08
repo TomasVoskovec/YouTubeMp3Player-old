@@ -6,7 +6,7 @@
              xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
                   android:TabbedPage.BarItemColor="#cccccc"
-                  android:TabbedPage.BarSelectedItemColor="#ff7500"
+                  android:TabbedPage.BarSelectedItemColor="#ff7700"
              mc:Ignorable="d"
              x:Class="app.Views.MainPage">
 
