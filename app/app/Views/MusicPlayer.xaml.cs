@@ -1,4 +1,6 @@
 ﻿using app.Models;
+using MediaManager;
+using Plugin.CrossPlatformTintedImage.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using Plugin.CrossPlatformTintedImage.Abstractions;
+
 
 namespace app.Views
 {
@@ -23,6 +25,8 @@ namespace app.Views
 
         void init()
         {
+            //CrossMediaManager.Current.Play("https://ia800806.us.archive.org/15/items/Mp3Playlist_555/AaronNeville-CrazyLove.mp3");
+
             AudioSlider.MinimumTrackColor = Constants.ActiveOrangeColor;
             AudioSlider.MaximumTrackColor = Constants.PasiveColor;
 
