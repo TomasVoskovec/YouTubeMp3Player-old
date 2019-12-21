@@ -95,31 +95,23 @@
                     ThumbImageSource="slider_thumb.png"/>
 
             <!-- Player action buttons -->
-            <Button x:Name="PreviousButton"
-                    Clicked="PreviousButton_Clicked"
-                    Grid.Row="10"
+            <Button Grid.Row="10"
                     Grid.Column="0"
                     BackgroundColor="Transparent"/>
             <Image Grid.Row="10"
                    Grid.Column="0"
                    Source="prev_ico.png"/>
 
-            <Button x:Name="PlayButton"
-                    Clicked="PlayButton_Clicked"
-                    Grid.Row="9"
+            <Button Grid.Row="9"
                     Grid.RowSpan="2"
                     Grid.Column="1"
-                    Margin="0,25,0,0"
                     BackgroundColor="Transparent"/>
             <Image Grid.Row="9"
                    Grid.RowSpan="2"
                    Grid.Column="1"
-                   Margin="0,25,0,0"
                    Source="play_ico.png"/>
 
-            <Button x:Name="NextButton"
-                    Clicked="NextButton_Clicked"
-                    Grid.Row="10"
+            <Button Grid.Row="10"
                     Grid.Column="2"
                     BackgroundColor="Transparent"/>
             <Image Grid.Row="10"
